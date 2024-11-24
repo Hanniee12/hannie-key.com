@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Key Display and Copy</title>
+    <style>
+        /* CSS để căn giữa trang */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            text-align: center;
+            border: 1px solid #ddd;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        input {
+            padding: 10px;
+            width: 200px;
+            margin: 10px 0;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Key Display</h2>
+    
+    <!-- Hiển thị key trong ô nếu có key trong URL -->
+    <input type="text" id="keyInput" value="" readonly>
+    
+    <!-- Nút sao chép key -->
+    <button onclick="copyKey()">Sao chép</button>
+</div>
+
+<script>
+    // Lấy giá trị của tham số "key" từ URL
+    function getQueryParam(param) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
+
+    // Cập nhật giá trị của ô input với key từ URL
+    const key = getQueryParam('key');
+    if (key) {
+        document.getElementById('keyInput').value = key;
+    }
+
+    // Hàm sao chép key vào clipboard
+    function copyKey() {
+        var keyInput = document.getElementById('keyInput');
+        keyInput.select();
+        keyInput.setSelectionRange(0, 99999); // Cho phép chọn toàn bộ key trên di động
+
+        // Sao chép nội dung vào clipboard
+        document.execCommand('copy');
+
+        // Thông báo đã sao chép
+        alert("Key đã được sao chép: " + keyInput.value);
+    }
+</script>
+
+</body>
+</html>
