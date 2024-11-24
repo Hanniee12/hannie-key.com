@@ -69,8 +69,11 @@
 
     // Cập nhật giá trị của ô input với key từ URL
     const key = getQueryParam('key');  // Đảm bảo tham số là 'key'
+    
     if (key) {
-        document.getElementById('keyInput').value = key;
+        // Giải mã tham số key nếu cần thiết
+        const decodedKey = decodeURIComponent(key);
+        document.getElementById('keyInput').value = decodedKey;
     }
 
     // Hàm sao chép key vào clipboard
