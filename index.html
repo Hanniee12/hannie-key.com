@@ -53,7 +53,7 @@
 <div class="container">
     <h2>Key Display</h2>
     
-    <!-- Hiển thị key trong ô nếu có key trong URL -->
+    <!-- Hiển thị key trong ô nếu có tham số "key" trong URL -->
     <input type="text" id="keyInput" value="" readonly>
     
     <!-- Nút sao chép key -->
@@ -68,7 +68,7 @@
     }
 
     // Cập nhật giá trị của ô input với key từ URL
-    const key = getQueryParam('key');
+    const key = getQueryParam('key');  // Đảm bảo tham số là 'key'
     if (key) {
         document.getElementById('keyInput').value = key;
     }
